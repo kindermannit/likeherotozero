@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:f="jakarta.faces.core">
+
+<h:head>
+    <title>Like Hero to Zero</title>
+    <link rel='stylesheet' href='webjars/bootstrap/5.3.3/css/bootstrap.min.css'/>
+    <script type='text/javascript' src='webjars/bootstrap/5.3.3/js/bootstrap.min.js'></script>
+</h:head>
+<h:body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Like Hero to Zero</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavbar"
+                    aria-controls="topNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="topNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/">Datenübersicht</a>
+                    </li>
+                    <c:if test="#{permissionBean.canCreate('User')}">
+                        <li>
+                            <a class="nav-link" href="/users_index.xhtml"> Benutzer</a>
+                        </li>
+                    </c:if>
+                    <c:if test="#{permissionBean.canCreate('Country')}">
+                        <li>
+                            <a class="nav-link" href="/countries_index.xhtml"> Länder</a>
+                        </li>
+                    </c:if>
+                    <c:if test="#{!permissionBean.isLoggedIn()}">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login.xhtml">Login</a>
+                        </li>
+                    </c:if>
+                </ul>
+                <c:if test="#{permissionBean.isLoggedIn()}">
+                    <span>
+                        <h:form style="margin-block-end: 0;">
+                        <h:commandButton action="#{authBean.logout}" styleClass="btn btn-primary" value="Logout"/>
+                        </h:form>
+                    </span>
+                </c:if>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <c:if test="#{permissionBean.canCreate('Emission')}">
+                        <div class="row">
+                            <div class="col-12">
+                                <a href="emissions_new.xhtml">
+                                    <button class="btn btn-primary w-100">Hinzufügen</button>
+                                </a>
+                            </div>
+                        </div>
+                    </c:if>
+                    <h:dataTable
+                            value="#{permissionBean.isLoggedIn() ? emissionBean.allEmissions() : emissionBean.allApprovedEmissions()}"
+                            var="data" class="table table-striped mt-4">
+                        <h:column>
+                            <f:facet name="header">Land</f:facet>
+                            #{data.countryId.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Jahr</f:facet>
+                            #{data.year}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Tonnen</f:facet>
+                            #{data.tons}
+                        </h:column>
+                        <c:if test="#{permissionBean.canCreate('Emission')}">
+                            <h:column>
+                                <f:facet name="header">Status</f:facet>
+                                #{emissionBean.emissionStatusList[data.status-1].getStatus()}
+                            </h:column>
+                            <c:if test="#{permissionBean.canApprove('Emission')}">
+                                <h:column>
+                                    <f:facet name="header">Aktionen</f:facet>
+                                    <div class="row">
+                                        <h:panelGroup rendered="#{data.isPending()}">
+                                            <div class="col-6">
+                                                <h:form style="margin-block-end: 0;">
+                                                    <h:commandButton value="Freigeben"
+                                                                     action="#{emissionBean.approveEmission(data)}"
+                                                                     class="btn btn-success"/>
+                                                </h:form>
+                                            </div>
+                                        </h:panelGroup>
+                                        <div class="col-6">
+                                            <h:form style="margin-block-end: 0;">
+                                                <h:commandButton value="Löschen"
+                                                                 action="#{emissionBean.deleteEmission(data)}"
+                                                                 class="btn btn-danger"/>
+                                            </h:form>
+                                        </div>
+                                    </div>
+                                </h:column>
+                            </c:if>
+                        </c:if>
+                    </h:dataTable>
+                </div>
+            </div>
+        </div>
+    </main>
+</h:body>
+</html>
