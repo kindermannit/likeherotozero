@@ -8,6 +8,11 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+/**
+ * Data Access Object for performing operations on the Role entity.
+ * This class provides methods to interact with the database for CRUD operations on roles.
+ * It utilizes JPA's EntityManager to execute queries and manage role entities.
+ */
 public class RoleDao {
 
     public List<Role> findAll() {

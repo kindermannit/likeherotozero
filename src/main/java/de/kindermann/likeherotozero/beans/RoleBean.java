@@ -7,6 +7,16 @@ import jakarta.inject.Named;
 
 import java.util.List;
 
+/**
+ * Managed bean responsible for handling role-related operations
+ * within a request-scoped lifecycle.
+ *
+ * The RoleBean class is annotated with @Named and @RequestScoped
+ * to allow it to be used in JSF pages for managing roles data.
+ *
+ * Internally, this class utilizes a RoleDao instance to perform
+ * data access operations related to roles.
+ */
 @Named
 @RequestScoped
 public class RoleBean {

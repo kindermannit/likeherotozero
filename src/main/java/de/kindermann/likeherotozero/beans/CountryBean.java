@@ -8,6 +8,11 @@ import jakarta.inject.Named;
 
 import java.util.List;
 
+/**
+ * CountryBean is a managed bean for handling operations related to Country entities.
+ * It is responsible for adding new countries and retrieving existing ones.
+ * The bean is accessible in a request-scoped context.
+ */
 @Named
 @RequestScoped
 public class CountryBean {

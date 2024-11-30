@@ -8,6 +8,13 @@ import java.util.Set;
  * Represents a role in the system.
  * This class is annotated with JPA annotations to indicate that it is an entity
  * and should be mapped to a database table named "roles".
+ *
+ * A role is associated with users and permissions, defining the access level
+ * and actions that can be performed by users who are assigned this role.
+ *
+ * The `Role` class contains methods to get and set role properties, including
+ * the role's unique identifier, name, associated users, and permissions.
+ * It overrides `hashCode`, `equals`, and `toString` methods for its functionality.
  */
 @Entity
 @Table(name = "roles")

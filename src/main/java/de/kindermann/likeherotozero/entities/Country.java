@@ -5,18 +5,17 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 /**
- * The Country class represents a country entity with a unique identifier,
- * name, ISO3 code, and associated emissions.
+ * Represents a country entity with a unique identifier, name, and ISO3 code.
  *
- * This entity is mapped to the "countries" table in the database.
- * It supports basic persistence operations as well as associations
- * with the Emission entity.
+ * This entity is mapped to the "countries" table in the database. Each country
+ * can be associated with multiple emission records defined by the `Emission`
+ * class, forming a one-to-many relationship.
  *
  * Annotations:
- * - @Entity indicates that this class is a JPA entity.
- * - @Table specifies the table name in the database.
- * - @Id and @GeneratedValue define the primary key and its generation strategy.
- * - @OneToMany establishes a one-to-many relationship with the Emission entity.
+ * - `@Entity` indicates that this class is a JPA entity.
+ * - `@Table` specifies the table name in the database as "countries".
+ * - `@Id` and `@GeneratedValue` define the primary key and its generation strategy.
+ * - `@OneToMany` establishes a one-to-many relationship with the `Emission` entity, mapped by the "countryId".
  */
 @Entity
 @Table(name = "countries")

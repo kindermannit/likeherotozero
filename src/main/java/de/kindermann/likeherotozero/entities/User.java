@@ -7,8 +7,13 @@ import java.util.Set;
 
 /**
  * Represents a user in the system.
- * This class is annotated with JPA annotations to indicate that it is an entity
- * and should be mapped to a database table named "users".
+ * This entity is mapped to the "users" table in the database.
+ * A user has credentials such as email and password, personal information
+ * like first name and last name, and a status to indicate their current
+ * state in the system.
+ * Each user is associated with a role, which defines their permissions and access level.
+ * The class includes methods for retrieving and setting user details
+ * and overrides hashCode and equals methods based on the user ID.
  */
 @Entity
 @Table(name = "users")

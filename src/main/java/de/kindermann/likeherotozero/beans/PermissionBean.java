@@ -10,6 +10,14 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.Serializable;
 
+/**
+ * PermissionBean is a session-scoped managed bean that handles permission checks
+ * and user login status verification.
+ *
+ * This bean primarily interacts with session utilities and DAOs to ascertain
+ * whether a user is logged in and to verify their permissions for creating and
+ * approving entities within the system.
+ */
 @Named
 @SessionScoped
 public class PermissionBean implements Serializable {

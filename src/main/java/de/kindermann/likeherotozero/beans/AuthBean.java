@@ -11,6 +11,15 @@ import java.io.Serializable;
 import at.favre.lib.crypto.bcrypt.*;
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * The AuthBean class is a managed bean used for handling user authentication
+ * in a web application environment. It serves as a session-scoped bean, ensuring
+ * that the user's authentication state is maintained throughout their session.
+ *
+ * This class provides methods for logging in and out a user. The login method
+ * validates user credentials against the database and starts a session if the
+ * credentials are correct. The logout method invalidates the user session.
+ */
 @Named
 @SessionScoped
 public class AuthBean implements Serializable {

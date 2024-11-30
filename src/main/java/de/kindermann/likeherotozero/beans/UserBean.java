@@ -11,6 +11,16 @@ import jakarta.inject.Named;
 
 import java.util.List;
 
+/**
+ * Managed bean responsible for handling user-related operations within a request-scoped lifecycle.
+ *
+ * The UserBean class is annotated with @Named and @RequestScoped to allow it to be used in JSF pages
+ * for managing user data. It provides the ability to add new users and retrieve all existing users
+ * from the system.
+ *
+ * Internally, this class utilizes a UserDao instance to perform data access operations related to users.
+ * It also relies on a RoleBean to assign roles to users during the user creation process.
+ */
 @Named
 @RequestScoped
 public class UserBean {

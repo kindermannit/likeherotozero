@@ -8,6 +8,14 @@ import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+/**
+ * PermissionDao is responsible for managing the retrieval of permission details
+ * for various actions such as update, create, delete, and approve for different roles
+ * and entities within the system.
+ *
+ * It utilizes JPA to interact with the database, fetches permissions associated
+ * with roles, and checks if specific actions are allowed based on these permissions.
+ */
 public class PermissionDao {
 
     public boolean canUpdate(Role role, String entity) {

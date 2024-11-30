@@ -10,6 +10,39 @@ import jakarta.inject.Named;
 
 import java.util.List;
 
+/**
+ * EmissionBean is a managed bean that handles operations related to emission records.
+ * It is responsible for adding new emissions, retrieving lists of emissions based on
+ * their approval status, and managing emission records within the system.
+ * The bean operates within a request-scoped context and interacts primarily with the
+ * EmissionDao for data persistence and retrieval.
+ *
+ * Annotations:
+ * - @Named declares that this class can be accessed in a JSF context with a specific name.
+ * - @RequestScoped specifies that the bean's lifecycle corresponds to a single HTTP request.
+ *
+ * Dependencies:
+ * - EmissionDao for data access operations.
+ * - CountryBean for retrieving country information associated with emissions.
+ * - PermissionBean for checking permissions related to emission operations.
+ *
+ * Fields:
+ * - year: The year when the emission was recorded.
+ * - tons: The quantity of emissions in tons.
+ * - countryId: The unique identifier for the country associated with the emission.
+ * - emissionStatusList: A list of possible statuses that an emission can have.
+ *
+ * Methods:
+ * - addEmission: Adds a new emission entry to the system. Sets the status to ACTIVE
+ *   if the user has permission to approve emissions; otherwise, sets it to PENDING.
+ * - allApprovedEmissions: Retrieves all emissions with an ACTIVE status.
+ * - allEmissions: Retrieves all emission records from the database.
+ * - deleteEmission: Deletes a specified emission record by its ID.
+ * - approveEmission: Approves a specified emission record by setting its status to ACTIVE.
+ * - Getter and setter methods for the year, tons, and countryId fields.
+ * - getEmissionStatusList: Returns all possible emission statuses.
+ * - getPendingStatusId: Returns the integer representation of the PENDING status.
+ */
 @Named
 @RequestScoped
 public class EmissionBean {

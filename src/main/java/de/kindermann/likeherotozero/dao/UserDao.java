@@ -9,6 +9,11 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+/**
+ * The UserDao class provides CRUD operations for the User entity.
+ * It interacts with the database to perform actions like finding users
+ * by email, retrieving all users, and saving a new user to the database.
+ */
 public class UserDao {
     public User findByEmail(String email) {
         EntityManager em = JpaUtil.getEntityManager();

@@ -10,6 +10,12 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+/**
+ * The CountryDao class provides data access operations related to
+ * the Country entity. It includes methods for retrieving all countries,
+ * finding a country by its unique identifier, and saving a new country
+ * to the database.
+ */
 public class CountryDao {
 
     public List<Country> findAll() {

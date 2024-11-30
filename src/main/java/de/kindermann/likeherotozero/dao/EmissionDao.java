@@ -10,6 +10,12 @@ import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
+/**
+ * Data Access Object (DAO) for managing emission records in the database.
+ *
+ * This class provides methods to perform CRUD operations on the Emission entity.
+ * It leverages JPA for persistence operations.
+ */
 public class EmissionDao {
 
     public List<Emission> findAll() {
